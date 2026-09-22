@@ -26,7 +26,7 @@ fprintf("%d data rows starting after row %d.\n", height(T), startingrow);
 
 %%
 efficiency = F(rpm, torque);
-mthermalp = power .* efficiency;
+mthermalp = power .* (1 - (efficiency ./ 100));
 outT = table(time, rpm, torque, power, efficiency, mthermalp);
 outofrange = isnan(efficiency);
 nOut = sum(outofrange);
