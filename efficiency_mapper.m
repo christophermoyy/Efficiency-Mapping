@@ -20,6 +20,9 @@ T = readtable(inputdata, opts);
 time = T{:, timecolumn};
 rpm = T{:, rpmcolumn};
 torque = T{:, torquecolumn};
+torque = torque ./ 4;
+%remove torque = torque ./ 4  if not using motor data from single
+%hub motor
 power = rpm .* torque;
 
 fprintf("%d data rows starting after row %d.\n", height(T), startingrow);
