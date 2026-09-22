@@ -20,20 +20,32 @@ T = readtable(inputdata, opts);
 time = T{:, timecolumn};
 rpm = T{:, rpmcolumn};
 torque = T{:, torquecolumn};
+power = rpm .* torque;
 
 fprintf("%d data rows starting after row %d.\n", height(T), startingrow);
 
 %%
 efficiency = F(rpm, torque);
-outT = table(time, rpm, torque, efficiency);
+mthermalp = power .* efficiency;
+outT = table(time, rpm, torque, power, efficiency, mthermalp);
 outofrange = isnan(efficiency);
 nOut = sum(outofrange);
 
+
 if nOut > 0
-    warning('%d of %d rows were out of map.', nOut, height(outT));
+    warning("%d of %d rows were out of map.", nOut, height(outT));
     disp("Rows omitted:");
     disp(outT(outofrange, {"time", "rpm", "torque"}));
 end
+
+figure;
+plot(outT,time,mthermalp);
+
+%%
+thermavg = mean(mthermalp, "omitnan");
+thermrms = rms(mthermalp, "omitnan");
+fprintf("\nMotor thermal power AVG: %d\n", thermavg;
+fprintf("\nMotor thermal power RMS: %d\n", thermrms;
 
 %%
 writetable(outT, outputdata);
