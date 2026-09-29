@@ -23,10 +23,6 @@ power = rpm .* torque;
 fprintf("%d data rows starting after row %d.\n", size(data,1), startingrow);
 
 %%
-disp([min(rpm) max(rpm)])
-disp([min(torque) max(torque)])
-disp([min(d.rpm_data) max(d.rpm_data)])
-disp([min(d.torque_data) max(d.torque_data)])
 efficiency = F(rpm, torque);
 mthermalp = power .* (1 - (efficiency ./ 100));
 outT = table(time, rpm, torque, power, efficiency, mthermalp);
