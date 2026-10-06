@@ -1,12 +1,15 @@
 clear; clc;
 mapfile = "FMOTB_edata.mat";
 %change map file and other files via file name
-inputdata  = "endurancedata2.csv";
+AWDmotormap = true;
+%set false for single hub maps
+inputdata  = "endurancedata1.csv";
+%change inputdata file name per csv file name
 outputdata = "testing_data_efficiency.csv";
-startingrow = 19;
+startingrow = 18;
 timecolumn = 1;
-rpmcolumn = 3;
-torquecolumn = 2;
+rpmcolumn = 2;
+torquecolumn = 3;
 
 %%
 d = load(mapfile, "rpm_data", "torque_data", "efficiency_data");
@@ -16,9 +19,9 @@ data = data(startingrow:end, :);
 time   = data(:, timecolumn);
 rpm    = data(:, rpmcolumn);
 torque = data(:, torquecolumn);
-torque = torque ./ 4;
-%remove torque = torque ./ 4  if not using motor data from single
-%hub motor
+if AWDmotormap
+    torque = torque ./ 4;
+%assuming torque is spread across 4 motors for AWD
 power = rpm .* torque;
 fprintf("%d data rows starting after row %d.\n", size(data,1), startingrow);
 
