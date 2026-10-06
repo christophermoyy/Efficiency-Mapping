@@ -1,0 +1,19 @@
+EFFICIENCY THERMAL PACKAGE
+
+FOR OUR DATA: (with motor rpm and torque data)
+
+*Relevant files are x_edata.mat (contains data from manufacturer graphs) and efficiency_mapper.m
+Ensure all files used in steps are in same path
+
+1. download efficiency_mapper.m, primary script
+2. download mapped efficiency graphs (FMOTB_edata.mat, etc.)
+3. in first section of code, change map name to specific map file you want to use and set AWDmotor to true or false based on motor map
+4. open as motec file, then choose the 2 channels (rpm and torque) and export as csv
+5. no formatting needed, check to see columns are correct in code though
+(time is column 1, rpm 2, etc originally - change code number based on any column changes; ex: torque = 2 if column 2 instead of 3)
+6. change file name for inputdata in code to your exported file name
+7. run through each section
+8. rms and average returned for thermal power
+9. new file should appear after last section of code, save somewhere (gets over written, so change code name to save new file or save elsewhere)
+
+FOR FSAE DATA: (only power)
