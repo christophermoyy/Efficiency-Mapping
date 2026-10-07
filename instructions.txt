@@ -27,3 +27,5 @@ Ensure all files used in steps are in same path (including tdms files)
 5. change AWDmotor variable to true if this is AWD motor, else false
 6. run all sections in order
 7. rms and average returned for thermal power
+
+**Example test for FSAE data: UConnData1.tdms, with AWDmotor = true (AWD team)
