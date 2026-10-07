@@ -1,7 +1,7 @@
 clear; clc;
 mapfile = "FMOTB_edata.mat";
 %change map file and other files via file name
-AWDmotormap = true;
+AWDmotormap = false;
 %set false for single hub maps
 inputdata  = "endurancedata1.csv";
 %change inputdata file name per csv file name
@@ -19,15 +19,14 @@ data = data(startingrow:end, :);
 time   = data(:, timecolumn);
 rpm    = data(:, rpmcolumn);
 torque = data(:, torquecolumn);
-if AWDmotormap
-    torque = torque ./ 4;
-%assuming torque is spread across 4 motors for AWD
 power = rpm .* torque;
 fprintf("%d data rows starting after row %d.\n", size(data,1), startingrow);
 
 %%
-efficiency = F(rpm, torque);
-mthermalp = power .* (1 - (efficiency ./ 100));
+efficiency = F(rpm ./ 30 .* pi, torque);
+%assuming units for channel are in rads/s
+Pelec = power ./ (efficiency ./ 100);
+mthermalp = Pelec - power;
 outT = table(time, rpm, torque, power, efficiency, mthermalp);
 outofrange = isnan(efficiency);
 nOut = sum(outofrange);
@@ -44,6 +43,7 @@ grid on;
 %%
 thermavg = mean(mthermalp, "omitnan");
 thermrms = rms(mthermalp, "omitnan");
+fprintf("\nFor FSAE data spanning %.3f seconds:\n", (sum(~isnan(efficiency))-1)/500);
 fprintf("\nMotor thermal power AVG: %.3f\n", thermavg);
 fprintf("\nMotor thermal power RMS: %.3f\n", thermrms);
 
