@@ -3,7 +3,7 @@ MOTOR THERMAL ANALYSIS SCRIPT INSTRUCTIONS
 FOR OUR DATA: (with motor rpm and torque data)
 
 *Relevant files are x_edata.mat (contains data from manufacturer graphs) and efficiency_mapper.m
-Ensure all files used in steps are in same path
+Ensure all files used in steps are in same path (including csv files)
 
 1. download efficiency_mapper.m, primary script
 2. download mapped efficiency graphs (FMOTB_edata.mat, etc.)
@@ -17,3 +17,13 @@ Ensure all files used in steps are in same path
 9. new file should appear after last section of code, save somewhere (gets over written, so change code name to save new file or save elsewhere)
 
 FOR FSAE DATA: (only power)
+*Relevant files are x_edata.mat (contains data from manufacturer graphs) and efficiency_mapper.m
+Ensure all files used in steps are in same path (including tdms files)
+
+1. download from FSAE tdms file for that team's car
+2. download fsae_efficiency_mapper
+3. change file name of inputdata to downloaded data
+4. change map file according to motor efficiency graph used
+5. change AWDmotor variable to true if this is AWD motor, else false
+6. run all sections in order
+7. rms and average returned for thermal power
