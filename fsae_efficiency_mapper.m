@@ -1,5 +1,5 @@
 clear; clc;
-inputdata = "16-260620-170752.tdms";
+inputdata = "UConnData1.tdms";
 %change inputdata file name to fsae tdms file
 groupname = "Data";
 volt = "Voltage";
