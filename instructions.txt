@@ -1,4 +1,5 @@
 MOTOR THERMAL ANALYSIS SCRIPT INSTRUCTIONS
+**Script may need some matlab plugins, maybe Statistical and Machine Learning Toolbox and Data Acquisition Toolbox
 
 FOR OUR DATA: (with motor rpm and torque data)
 
