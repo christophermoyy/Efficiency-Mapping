@@ -1,5 +1,6 @@
 MOTOR THERMAL ANALYSIS SCRIPT INSTRUCTIONS
 **Script may need some matlab plugins, maybe Statistical and Machine Learning Toolbox and Data Acquisition Toolbox
+Add maps, endurance data, and FSAE data to corresponding folder, and change strings to file name
 
 FOR OUR DATA: (with motor rpm and torque data)
 
